@@ -21,7 +21,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Estados"
+                $ref: "#/components/schemas/Estado"
     post:
       summary: Insere novo estado
       requestBody:
@@ -54,7 +54,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "$/components/schemas/Estado"
+                $ref: "#/components/schemas/Estado"
         400:
           description: Estado não encontrado
           content:
@@ -75,8 +75,7 @@ paths:
             description: "Sucesso"
             content:
               application/json:
-                schema:
-                  $ref: "#/components/schemas/Estado"
+                example: "Success"
           400:
             description: Estado não encontrado
             content:
@@ -89,8 +88,7 @@ paths:
             description: "Sucesso"
             content:
               application/json:
-                schema:
-                  $ref: "#/components/schemas/Estado"
+                example: "Estado apagado"
           400:
             description: Estado não encontrado
             content:
@@ -125,16 +123,3 @@ components:
       scheme: bearer
       bearerFormat: QJWT
         
-
-
-      
-        
-        
-        
-        
-        
-        
-        
-        
-        
-                
