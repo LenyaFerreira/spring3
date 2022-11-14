@@ -1,0 +1,140 @@
+openapi: 3.0.1
+info:
+  title: API estados
+  description: API para cadastro de estados brasileiros.
+  version: 0.0.1
+  termsOfService: https://mockapi.io
+  license:
+    name: "Licença: GPlv3"
+    url: https:www.gnu.org/licenses/gpl-3.0.html
+servers:
+  - url: http://localhost:8080
+    description: API de estados
+
+paths:
+  /estados:
+    get:
+      summary: Recupera todos os estados
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Estados"
+    post:
+      summary: Insere novo estado
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                descricao:
+                  type: string
+      responses:
+        201:
+          description: "Sucesso"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Estado"
+  /estados/{id}:
+    parameters:
+    - name: id
+      in: path
+      schema:
+        type: integer
+      required: true
+    get:
+      summary: Recupera uma entidade pelo ID
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                $ref: "$/components/schemas/Estado"
+        400:
+          description: Estado não encontrado
+          content:
+            application/json:
+              example: "Not found"
+    put:
+        summary: Atualiza o nome de um estado
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  nome:
+                    type: string
+        responses:
+          201:
+            description: "Sucesso"
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Estado"
+          400:
+            description: Estado não encontrado
+            content:
+              application/json:
+                example: "Not found"
+    delete:
+        summary: Deleta um estado
+        responses:
+          201:
+            description: "Sucesso"
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Estado"
+          400:
+            description: Estado não encontrado
+            content:
+              application/json:
+                example: "Not found"
+security:
+  - auth: []
+components:
+  schemas:
+    Estado:
+      type: object
+      properties:
+        id:
+          type: integer
+        nome:
+          type: string
+        regiao:
+          type: string
+        populacao:
+          type: integer
+        capital:
+          type: string
+        area:
+          type: integer
+    Estados:
+      type: array
+      items:
+        $ref: "#/components/schemas/Estados"
+  securitySchemes:
+    auth:
+      type: http
+      scheme: bearer
+      bearerFormat: QJWT
+        
+
+
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+                
